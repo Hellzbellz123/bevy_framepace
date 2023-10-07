@@ -130,7 +130,7 @@ fn update_proxy_resources(settings: Res<FramepaceSettings>, proxy: Res<Framepace
 }
 
 /// Configures the framelimiting technique for the app.
-#[derive(Debug, Default, Clone, Reflect)]
+#[derive(Debug, Default, Clone, Reflect, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Limiter {
     /// Uses the window's refresh rate to set the frametime limit, updating when the window changes
     /// monitors.
