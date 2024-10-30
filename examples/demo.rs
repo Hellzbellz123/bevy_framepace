@@ -1,4 +1,4 @@
-use bevy::prelude::*;
+use bevy::{color::palettes, prelude::*};
 
 fn main() {
     App::new()
@@ -18,7 +18,7 @@ struct EnableText;
 
 fn toggle_plugin(
     mut settings: ResMut<bevy_framepace::FramepaceSettings>,
-    input: Res<Input<KeyCode>>,
+    input: Res<ButtonInput<KeyCode>>,
 ) {
     if input.just_pressed(KeyCode::Space) {
         use bevy_framepace::Limiter;
@@ -43,7 +43,7 @@ pub fn update_cursor(windows: Query<&Window>, mut gizmos: Gizmos) {
             pos.x - windows.single().width() / 2.0,
             windows.single().height() / 2.0 - pos.y,
         );
-        gizmos.circle_2d(pos, 10.0, Color::GREEN);
+        gizmos.circle_2d(pos, 10.0, palettes::basic::GREEN);
     }
 }
 
@@ -55,6 +55,7 @@ fn setup(mut commands: Commands, mut windows: Query<&mut Window>) {
             order: 10,
             ..default()
         },
+        tonemapping: bevy::core_pipeline::tonemapping::Tonemapping::None,
         ..default()
     },));
     commands.spawn((Camera3dBundle::default(),));
